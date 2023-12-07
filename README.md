@@ -5,32 +5,29 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/geowrgetudor/laravel-balance/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/geowrgetudor/laravel-balance/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/geowrgetudor/laravel-balance.svg?style=flat-square)](https://packagist.org/packages/geowrgetudor/laravel-balance)
 
-This is a small package that ads
+This is a small package that adds a credit system that you might need for various reasons:
 
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/laravel-balance.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/laravel-balance)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+-   awarding users based on their activity
+-   rewards in credits instead of real money
+-   rewards in credits for referrals
+-   etc.
 
 ## Installation
 
-You can install the package via composer:
+Install the package via composer:
 
 ```bash
 composer require geowrgetudor/laravel-balance
 ```
 
-You can publish and run the migrations with:
+Publish and run the migrations with:
 
 ```bash
 php artisan vendor:publish --tag="balance-migrations"
 php artisan migrate
 ```
 
-If you decide to change the default migration's table name, make sure you publish the config file and change the table name there too:
+If you decide to change the default migration table name, make sure you publish the config file and change the table name there too:
 
 ```bash
 php artisan vendor:publish --tag="balance-config"
@@ -51,6 +48,8 @@ return [
 
 ## Prepare your model
 
+Add the `HasBalance` trait to any model you need to.
+
 ```php
 use Geow\Balance\Traits\HasBalance;
 
@@ -64,8 +63,6 @@ class User extends Model {
 ## Usage
 
 ```php
-$user = User::first();
-
 // Set balance (similar to increaseCredit() method - just a naming difference)
 $user->setCredit(2000);
 
