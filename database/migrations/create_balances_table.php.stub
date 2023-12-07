@@ -8,11 +8,11 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('migration_table_name_table', function (Blueprint $table) {
+        Schema::create('balances', function (Blueprint $table) {
             $table->id();
-
-            // add fields
-
+            $table->morphs('balanceable');
+            $table->integer('amount');
+            $table->text('reason')->nullable();
             $table->timestamps();
         });
     }
