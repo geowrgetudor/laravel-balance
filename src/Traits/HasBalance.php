@@ -5,12 +5,22 @@ namespace Geow\Balance\Traits;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Geow\Balance\Models\Balance;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Support\Number;
 
 trait HasBalance
 {
+    protected string $currency = 'USD';
+
     public function credits(): MorphMany
     {
         return $this->morphMany(Balance::class, 'balanceable');
+    }
+
+    public function withCurrency(string $currency): self
+    {
+        $this->currency = $currency;
+
+        return $this;
     }
 
     protected function credit(): Attribute
@@ -23,7 +33,7 @@ trait HasBalance
     protected function creditCurrency(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->credits()->sum('amount') / 100,
+            get: fn () => Number::currency($this->credits()->sum('amount') / 100, $this->currency),
         );
     }
 

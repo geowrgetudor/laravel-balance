@@ -5,6 +5,7 @@ namespace Geow\Balance\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Support\Number;
 
 class Balance extends Model
 {
@@ -21,7 +22,7 @@ class Balance extends Model
     protected function amountCurrency(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->amount / 100,
+            get: fn () => Number::currency($this->amount / 100),
         );
     }
 

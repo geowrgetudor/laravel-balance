@@ -73,7 +73,7 @@ $user->credit;
 $user->increaseCredit(1000);
 
 // Decrease balance
-$user->decreaseCreit(500);
+$user->decreaseCredit(500);
 
 // Reset balance to 0
 $user->resetCredit();
@@ -86,10 +86,13 @@ $user->setCredit(20000, 'Signup bonus');
 $user->increaseCredit(1000, 'Awarded credits');
 $user->decreaseCredit(250, 'Service usage');
 
-// Get balance currency style (divided by 100). For example your currency is $ and you want to award your user $10
-$user->increaseCredit(1000); // $10 in cents
+// Get balance as currency
+$user->increaseCredit(1000);
 $user->credit; // returns 1000 (represeting cents)
-$user->creditCurrency; // returns 10 (representing dollars)
+$user->creditCurrency; // returns $10.00 (representing dollars)
+
+// If you need to display using a different currency
+$user->withCurrency('EUR')->creditCurrency // returns €10.00
 
 // Getting all model related transactions (increases and decresed in balance)
 $user->credits; // Returns \Illuminate\Database\Eloquent\Collection
