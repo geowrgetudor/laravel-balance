@@ -16,7 +16,7 @@ class Balance extends Model
         parent::__construct($attributes);
 
         $this->guarded[] = $this->primaryKey;
-        $this->table = config('balances.table');
+        $this->table = config('balance.table');
     }
 
     protected function amountCurrency(): Attribute
