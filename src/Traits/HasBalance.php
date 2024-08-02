@@ -9,7 +9,12 @@ use Illuminate\Support\Number;
 
 trait HasBalance
 {
-    protected string $currency = 'USD';
+    protected string $currency;
+
+    public function __construct()
+    {
+        $this->currency = config('balance.default_currency', 'USD');
+    }
 
     public function credits(): MorphMany
     {
