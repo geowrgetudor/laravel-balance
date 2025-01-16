@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-balance` will be documented in this file.
 
+## v0.2.4 - 2025-01-16
+
+Support for current locale.
+
 ## v0.2.3 - 2024-10-15
 
 Define currency in package's config file
