@@ -2,9 +2,10 @@
 
 namespace Geow\Balance\Traits;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Geow\Balance\Models\Balance;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Number;
 
 trait HasBalance
@@ -28,7 +29,7 @@ trait HasBalance
 
         return $clone;
     }
-    
+
     protected function credit(): Attribute
     {
         return Attribute::make(
@@ -39,7 +40,7 @@ trait HasBalance
     protected function creditCurrency(): Attribute
     {
         return Attribute::make(
-            get: fn () => Number::currency($this->credits()->sum('amount') / 100, $this->currency),
+            get: fn () => Number::currency($this->credits()->sum('amount') / 100, $this->currency, App::getLocale()),
         );
     }
 
