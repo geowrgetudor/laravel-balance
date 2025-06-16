@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-balance` will be documented in this file.
 
+## v0.2.5 - 2025-06-16
+
+Laravel 12 support
+
 ## v0.2.4 - 2025-01-16
 
 Support for current locale.
