@@ -10,11 +10,15 @@ use Illuminate\Support\Number;
 
 trait HasBalance
 {
-    protected string $currency;
+    protected ?string $currency = null;
 
-    public function __construct()
+    /**
+     * Get the currency for this balance instance.
+     * Returns the configured default currency if not explicitly set.
+     */
+    protected function getCurrency(): string
     {
-        $this->currency = config('balance.default_currency', 'USD');
+        return $this->currency ?? config('balance.default_currency', 'USD');
     }
 
     public function credits(): MorphMany
@@ -40,7 +44,7 @@ trait HasBalance
     protected function creditCurrency(): Attribute
     {
         return Attribute::make(
-            get: fn () => Number::currency($this->credits()->sum('amount') / 100, $this->currency, App::getLocale()),
+            get: fn () => Number::currency($this->credits()->sum('amount') / 100, $this->getCurrency(), App::getLocale()),
         );
     }
 
