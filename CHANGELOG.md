@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-balance` will be documented in this file.
 
+## v0.2.6 - 2025-11-16
+
+### What's Changed
+
+* [Bug]: Constructor Override issue #14 by @gogl92 in https://github.com/geowrgetudor/laravel-balance/pull/15
+
+**Full Changelog**: https://github.com/geowrgetudor/laravel-balance/compare/0.2.5...0.2.6
+
 ## v0.2.5 - 2025-06-16
 
 Laravel 12 support
